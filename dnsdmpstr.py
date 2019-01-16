@@ -52,7 +52,7 @@ class dnsdmpstr():
 		retval = {}
 		data = {"csrfmiddlewaretoken": self.csrftoken, "targetip": target}
 		r = requests.post("https://dnsdumpster.com", headers=self.headers, data=data)
-		doc = BeautifulSoup(r.text.strip(), "lxml")
+		doc = BeautifulSoup(r.text.strip(), "html.parser")
 		tables = doc.find_all('table')
 		try:
 			retval['dns'] = self._clean_table(tables[0])
