@@ -1,4 +1,4 @@
-![](http://i.imgur.com/gxIlGAl.gif)
+![](https://i.imgur.com/Wu3tEEq.jpg)
 
 # dnsdmpstr
 Unofficial API &amp; Client for https://dnsdumpster.com/
@@ -7,16 +7,17 @@ Unofficial API &amp; Client for https://dnsdumpster.com/
 ```bash
 git clone https://github.com/zeropwn/dnsdmpstr
 cd dnsdmpstr
-chmod +x dnsdmpstr.py
+pip3 install -r requirements.txt
+chmod +x ddump.py
 ```
 
 # Usage
 ```bash
-python3 dnsdmpstr.py
+python3 ddump.py hackerone.com
 ```
 or
 ```bash
-./dnsdmpstr.py
+./ddump.py hackerone.com
 ```
 or
 ```python
