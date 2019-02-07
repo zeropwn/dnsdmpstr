@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
-import os
-import json
 import requests
-from cmd import Cmd
 from bs4 import BeautifulSoup
 
 class dnsdmpstr():
@@ -13,7 +10,7 @@ class dnsdmpstr():
 	"""
 	def __init__(self):
 		self.headers = {
-		"Referer":"https://dnsdumpster.com"
+			"Referer":"https://dnsdumpster.com"
 		}
 		r = requests.get("https://dnsdumpster.com", headers=self.headers)
 		doc = BeautifulSoup(r.text.strip(), "html.parser")
@@ -62,53 +59,3 @@ class dnsdmpstr():
 			return retval
 		except:
 			return False
-
-class ui(Cmd):
-
-	green = '\033[92m'
-	bold = '\033[1m'
-	end = '\033[0m'
-	intro = """
-	___  _  _ ____ ___  _  _ _  _ ___  
-	|  \ |\ | [__  |  \ |  | |\/| |__] 
-	|__/ | \| ___] |__/ |__| |  | |    
-	                                   
-	                                   """
-	prompt = green+"dnsdump> "+end
-	dnsdump = dnsdmpstr()
-
-	def do_dump(self, target):
-		"""
-		dump the target's info
-		"""
-		r = self.dnsdump.dump(target)
-		if(r):
-			print(json.dumps(r, indent=2))
-		else:
-			print('Invalid')
-
-	def do_clear(self, void):
-		"""
-		clear the screen
-		"""		
-		os.system('clear')
-
-	def do_cls(self, void):
-		"""
-		clear the screen
-		"""
-		os.system('cls')
-		"""
-		clean exit
-		"""
-	def do_EOF(self, void):
-		return True
-		"""
-		clean exit
-		"""
-	def do_exit(self, void):
-		return True
-
-if __name__ == '__main__':
-	ui = ui()
-	ui.cmdloop()
