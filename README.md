@@ -1,4 +1,4 @@
-![](https://i.imgur.com/Wu3tEEq.jpg)
+![](https://i.imgur.com/Vuhtexl.jpg)
 
 # dnsdmpstr
 Unofficial API &amp; Client for https://dnsdumpster.com/
@@ -13,16 +13,23 @@ chmod +x ddump.py
 
 # Usage
 ```bash
-python3 ddump.py hackerone.com
+python3 ddump.py -u hackerone.com --all
 ```
 or
 ```bash
-./ddump.py hackerone.com
+./ddump.py -u hackerone.com --all
 ```
 or
 ```python
 import dnsdmpstr
 
+target = "hackerone.com"
+
 dnsdump = dnsdmpstr()
-print(dnsdump.dump('hackforums.net')) # prints a dictionary containing the information
+print(json.dumps(dnsdump.dump(target), indent=1))
+print(dnsdump.hostsearch(target))
+print(dnsdump.reversedns(target))
+print(dnsdump.dnslookup(target))
+print(dnsdump.pagelinks(target))
+print(dnsdump.httpheaders(target))
 ```
