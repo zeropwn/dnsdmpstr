@@ -10,7 +10,7 @@ print("""
 	|  \ |\ | [__  |  \ |  | |\/| |__] 
 	|__/ | \| ___] |__/ |__| |  | |    
 
-	./ddump.py hackerone.com --all
+	./ddump.py -u hackerone.com --all
 """)
 
 parser = argparse.ArgumentParser()
