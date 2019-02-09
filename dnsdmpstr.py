@@ -26,6 +26,7 @@ class dnsdmpstr():
 			}
 		except:
 			pass
+
 	"""
 	filter function for the record tables
 	note: make sure txt records are filtered with record_type=1
@@ -41,6 +42,7 @@ class dnsdmpstr():
 			clean_ip = tag.a['href'].replace('https://api.hackertarget.com/reverseiplookup/?q=', '')
 			retval[idx] = { 'ip':clean_ip, 'host':clean_name}
 		return retval
+
 	"""
 	return information on given target
 	this is where all the records are cleaned and stored
@@ -59,3 +61,56 @@ class dnsdmpstr():
 			return retval
 		except:
 			return False
+
+	"""
+	execute host search on hackertarget api
+	"""
+	def hostsearch(self, target):
+		try:
+			# accepts a domain name
+			r = requests.get("https://api.hackertarget.com/hostsearch/?q={}".format(target))
+			return(r.text)
+		except:
+			return("An error occurred.")
+	"""
+	execute reversedns search on hackertarget api
+	"""
+	def reversedns(self, target):
+		try:
+			# accepts an IP, IP range or domain name.
+			r = requests.get("https://api.hackertarget.com/reversedns/?q={}".format(target))
+			return(r.text)
+		except:
+			return("An error occurred.")
+	"""
+	execute dnslookup on hackertarget api
+	"""
+	def dnslookup(self, target):
+		try:
+			# accepts a domain name
+			r = requests.get("https://api.hackertarget.com/dnslookup/?q={}".format(target))
+			return(r.text)
+		except:
+			return("An error occurred.")
+
+	"""
+	grab page links from hackertarget api
+	"""
+	def pagelinks(self, target):
+		try:
+			# accepts a domain name / ip
+			r = requests.get("https://api.hackertarget.com/pagelinks/?q={}".format(target))
+			return(r.text)
+		except:
+			return("An error occurred.")
+
+	"""
+	grab returned http headers from page using hackertarget api
+	"""
+	def httpheaders(self, target):
+		try:
+			# accepts a domain name
+			r = requests.get("https://api.hackertarget.com/httpheaders/?q={}".format(target))
+			return(r.text)
+		except:
+			return("An error occurred.")
